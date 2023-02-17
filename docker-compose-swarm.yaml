@@ -2,7 +2,7 @@ services:
     web:
         image: go6kozavar/bgapp-web
         deploy:
-            replicas: 5
+            replicas: 3
         ports:
             - 8080:80
         volumes:
