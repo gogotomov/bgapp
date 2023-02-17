@@ -1,0 +1,5 @@
+FROM webdevops/php-nginx:8.0
+
+COPY ./web /app
+
+RUN docker-php-ext-install pdo_mysql
