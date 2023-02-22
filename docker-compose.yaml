@@ -8,7 +8,7 @@ services:
             - 8081:80
         volumes:
             #- "${PROJECT_ROOT}:/var/www/html:ro"
-             - "/projects/test/web:/var/www/html:ro"
+             - "/projects/bgapp/web:/var/www/html:ro"
         networks:
             - app-network
         depends_on:
