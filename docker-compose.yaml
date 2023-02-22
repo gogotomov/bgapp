@@ -5,7 +5,7 @@ services:
             context: .
             dockerfile: Dockerfile.web
         ports:
-            - 8080:80
+            - 8081:80
         volumes:
             - "${PROJECT_ROOT}:/var/www/html:ro"
         networks:
