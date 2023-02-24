@@ -4,7 +4,7 @@ pipeline
      {
         label {
             label ""
-            customWorkspace "/projects"
+            customWorkspace "/projects/bgapp"
         }
     }
     
@@ -68,12 +68,6 @@ pipeline
             }
         }
 
-        stage('Clean Workspace') 
-        {
-            steps
-            {
-                cleanWs()
-            }
-        }
+        
     }
 }
