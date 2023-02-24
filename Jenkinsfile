@@ -16,13 +16,7 @@ pipeline
 
     stages
     {
-        stage('Clean Workspace') 
-        {
-            steps
-            {
-                cleanWs()
-            }
-        }
+        
         stage('Clone the Bgapp project')
         {
             steps
@@ -71,6 +65,14 @@ pipeline
                     docker container run -d --net app-network --name web -p 8082:80 -v $PROJECT_ROOT:/var/www/html bgapp-web
 
                     '''
+            }
+        }
+
+        stage('Clean Workspace') 
+        {
+            steps
+            {
+                cleanWs()
             }
         }
     }
