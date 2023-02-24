@@ -1,7 +1,6 @@
 pipeline
 {
-    agent any
-
+    agent
      {
         label {
             label ""
