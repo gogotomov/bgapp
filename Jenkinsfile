@@ -1,6 +1,13 @@
 pipeline
 {
     agent any
+
+     {
+        label {
+            label ""
+            customWorkspace "/projects"
+        }
+    }
     
     environment
     {
@@ -20,7 +27,7 @@ pipeline
         stage('Clone the Bgapp project')
         {
             steps
-            {
+            {   
                 sh '''
                     cd /projects
                     git clone https://github.com/gogotomov/bgapp.git              
