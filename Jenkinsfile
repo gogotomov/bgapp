@@ -1,7 +1,14 @@
 pipeline
 {
     agent any
-
+    {
+        node
+        {
+            label 'customWorkspace - bgapp'
+            customWorkspace '/projects/bgapp/web'
+        }    
+    }
+  
     environment
     {
         MYSQL_ROOT_PASSWORD = ''
@@ -10,7 +17,13 @@ pipeline
 
     stages
     {
-
+        stage('Clean Workspace') 
+        {
+            steps
+            {
+                cleanWs()
+            }
+        }
         stage('Clone the Bgapp project')
         {
             steps
@@ -61,5 +74,5 @@ pipeline
                     '''
             }
         }
-   }
+    }
 }
