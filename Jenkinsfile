@@ -10,7 +10,7 @@ pipeline
     
     environment
     {
-        MYSQL_ROOT_PASSWORD = ''
+        MYSQL_ROOT_PASSWORD1111 = ''
         PROJECT_ROOT = ''
     }
 
@@ -62,8 +62,8 @@ pipeline
                 sh '''
                     cd /projects/bgapp
                     docker container rm -f db web || true
-                    docker container run -d --net app-network --name db -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD bgapp-db
-                    docker container run -d --net app-network --name web -p 8082:80 -v $PROJECT_ROOT:/var/www/html bgapp-web
+                    docker container run -d --net app-network --name db -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} bgapp-db
+                    docker container run -d --net app-network --name web -p 8082:80 -v ${PROJECT_ROOT}:/var/www/html bgapp-web
 
                     '''
             }
