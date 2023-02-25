@@ -18,7 +18,7 @@ pipeline
    parameters
     {
         string(name: 'PROJECT_ROOT', defaultValue: '/projects/bgapp/web', description: 'PROJECT_ROOT')
-        password(name: 'MYSQL_ROOT_PASSWORD', defaultValue: '12345', description: 'Enter DB password')
+        password(name: 'MYSQL_ROOT_PASSWORD', description: 'Enter DB password')
     }
 
     //environment
