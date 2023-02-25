@@ -8,16 +8,24 @@ pipeline
         }
     }
     
-    parameters
+ //   options([
+ //       parameters([
+ //           password(name: 'MYSQL_ROOT_PASSWORD', description: 'Encryption key')
+ //           string(name: 'PROJECT_ROOT', defaultValue: '/projects/bgapp/web', description: 'PROJECT_ROOT')
+ //   ])  
+//]) 
+
+   parameters
     {
         string(name: 'PROJECT_ROOT', defaultValue: '/projects/bgapp/web', description: 'PROJECT_ROOT')
+        password(name: 'MYSQL_ROOT_PASSWORD', description: 'Encryption key')
     }
 
-    environment
-    {
-        MYSQL_ROOT_PASSWORD = '12345'
+    //environment
+    //{
+    //    MYSQL_ROOT_PASSWORD = '12345'
        // PROJECT_ROOT = '/projects/bgapp/web'
-    }
+    //}
 
     stages
     {
@@ -29,7 +37,7 @@ pipeline
                 sh '''
                     sudo rm -fr /projects/bgapp
                     cd /projects
-                    git clone https://github.com/gogotomov/bgapp.git              
+                    git clone https://github.com/gogotomov/bgapp.git
                     echo 'Bgapp project was successfully cloned !!!'
                '''
             }
@@ -64,6 +72,8 @@ pipeline
         {
             steps
             {
+                wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[var: 'MYSQL_ROOT_PASSWORD', password: MYSQL_ROOT_PASSWORD]], varMaskRegexes: []])
+
                 sh '''
                     cd /projects/bgapp
                     docker container rm -f db web || true
@@ -73,7 +83,5 @@ pipeline
                     '''
             }
         }
-
-        
     }
 }
