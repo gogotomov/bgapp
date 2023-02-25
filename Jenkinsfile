@@ -18,7 +18,7 @@ pipeline
    parameters
     {
         string(name: 'PROJECT_ROOT', defaultValue: '/projects/bgapp/web', description: 'PROJECT_ROOT')
-        password(name: 'MYSQL_ROOT_PASSWORD', description: 'Encryption key')
+        password(name: 'MYSQL_ROOT_PASSWORD', defaultValue: '12345', description: 'Enter DB password')
     }
 
     //environment
@@ -72,12 +72,12 @@ pipeline
         {
             steps
             {
-                wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[var: 'MYSQL_ROOT_PASSWORD', password: '12345']], varMaskRegexes: []])
+                wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[var: 'DB_PASSWORD', password: "${MYSQL_ROOT_PASSWORD}"]]])
 
                 sh '''
                     cd /projects/bgapp
                     docker container rm -f db web || true
-                    docker container run -d --net app-network --name db -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD bgapp-db
+                    docker container run -d --net app-network --name db -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} bgapp-db
                     docker container run -d --net app-network --name web -p 8082:80 -v "${PROJECT_ROOT}":/var/www/html bgapp-web
 
                     '''
