@@ -72,7 +72,7 @@ pipeline
         {
             steps
             {
-                wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[var: 'MYSQL_ROOT_PASSWORD', password: MYSQL_ROOT_PASSWORD]], varMaskRegexes: []])
+                wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[var: 'MYSQL_ROOT_PASSWORD', password: '12345']], varMaskRegexes: []])
 
                 sh '''
                     cd /projects/bgapp
