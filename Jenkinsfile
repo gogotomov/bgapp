@@ -34,6 +34,7 @@ pipeline
         {
             steps
             {   
+                cleanWs()
                 sh '''
                     cd /projects
                     git clone https://github.com/gogotomov/bgapp.git
