@@ -35,7 +35,6 @@ pipeline
             steps
             {   
                 sh '''
-                    sudo rm -fr /projects/bgapp
                     cd /projects
                     git clone https://github.com/gogotomov/bgapp.git
                     echo 'Bgapp project was successfully cloned !!!'
